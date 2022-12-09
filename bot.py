@@ -29,8 +29,8 @@ bot = commands.Bot(
     intents=intents,
 )
 
-
 @bot.command()
+@commands.guild_only()
 async def dream(ctx, *, prompt):
     msg = await ctx.send(f"“{prompt}”\n> Generating...")
     answers = stability_api.generate(prompt=prompt,
@@ -54,6 +54,7 @@ async def dream(ctx, *, prompt):
                 await ctx.send(file=file)
 ## This command will generate AI art for a specific dimension. I chose 738 x 251 for my purposes
 @bot.command()
+@commands.guild_only()
 async def load(ctx, *, prompt):
     msg = await ctx.send(f"“{prompt}”\n> Generating...")
     answers = stability_api.generate(prompt=prompt, width=1472, height= 512)
